@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>javaScript Draggable(s)</title>
+  <style>
+    body{background:#111; font-family: sans-serif}
+    div { width: 200px; height: 200px; margin:20px; line-height: 200px; border:none; border-radius:8px; text-align: center; color: #ffffff;}
+    div:first-child{background:red}
+    div:nth-child(2){background:grey }
+    div:nth-child(3){background:orange }
+  </style>
+  <script src="js/jquery.js"></script>
+</head>
+<body>
+    
+<div>Drag Box 1</div>
+<div>Drag Box 2</div>
+<div>Drag Box 3</div>
+<script>
+$(document).ready(function() {
+    var $dragging = null;
+
+    $(document.body).on("mousemove", function(e) {
+        if ($dragging) {
+            $dragging.offset({
+                top: e.pageY,
+                left: e.pageX
+            });
+        }
+    });
+    
+    $(document.body).on("mousedown", "div", function (e) {
+        $dragging = $(e.target);
+    });
+    
+    $(document.body).on("mouseup", function (e) {
+        $dragging = null;
+    });
+});    
+</script>
+</body>
+</html>
